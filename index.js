@@ -52,3 +52,40 @@ const intext = "Lorem, ipsum dolor sit? amet? consectetur? adipisicing elit. Sed
 const outtext = intext.replace(/\?/g, '');
 
 console.log("Res:", outtext);
+
+// ---------- Задание 4
+
+const indexsalary = 123912.57;
+const procindex = 0.175;
+
+const notindexsalary = indexsalary / (1 + procindex);
+
+console.log(`ЗП до индексации: ${notindexsalary.toFixed(2)} руб.`);
+
+// ----------- Задание 5
+
+function parseUrl(inputUrl) {
+    const regex = /^(https?:\/\/)?([^\/\s:]+)(:\d+)?(\/[^\s?]*)?(\?.*)?$/;
+    const match = inputUrl.match(regex);
+
+    if (!match) {
+        throw new Error('Ошибка!');
+    }
+
+    const protocol = match[1] ? match[1].replace('://', '') : null;
+    const domain = match[2];
+    const uri = match[4] ? match[4] : '/';
+    const query = match[5] ? match[5].replace('?', '') : null;
+
+    return {
+        protocol,
+        domain,
+        uri,
+        query
+    };
+}
+
+const inputUrl = 'https://www.google.com/search?q=nodejs+url+parser&hl=ru';
+const parsedUrl = parseUrl(inputUrl);
+
+console.log(parsedUrl);
